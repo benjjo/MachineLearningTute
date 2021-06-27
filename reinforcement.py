@@ -5,13 +5,6 @@ import numpy as np
 plt.rcParams['figure.figsize'] = (16, 9)
 plt.style.use('ggplot')
 
-"""
- #####    ######    ####    ##  ##   ######    ####    #####     ####    ##   ##  ######   ##  ##   ######
- ##  ##   ##         ##     ### ##   ##       ##  ##   ##  ##   ##  ##   #######  ##       ### ##     ##
- #####    #####      ##     ######   ####     ##  ##   #####    ##       ## # ##  #####    ######     ##
- ##  ##   ##         ##     ## ###   ##       ##  ##   ##  ##   ##  ##   ## # ##  ##       ## ###     ##
- ##  ##   ######    ####    ##  ##   ##        ####    ##  ##    ####    ## # ##  ######   ##  ##     ##
-"""
 data = pd.read_csv('./xclara.csv')
 print(data.shape)
 data.head()
@@ -56,10 +49,8 @@ while error != 0:
         distances = dist(X[i], C)
         cluster = np.argmin(distances)
         clusters[i] = cluster
-
     # Storing the old centroid values
     C_old = deepcopy(C)
-
     # Finding the new centroids by taking the average value.
     for i in range(k):
         points = [X[j] for j in range(len(X)) if clusters[j] == i]
@@ -70,8 +61,7 @@ colors = ['r', 'g', 'y', 'c', 'm']
 fig, ax = plt.subplots()
 for i in range(k):
     points = np.array([X[j] for j in range(len(X)) if clusters[j] == i])
+    ax.scatter(points[:, 0], points[:, 1], s=7, c=colors[i])
 
-ax.scatter(points[:, 0], points[:, 1], s=7, c=colors[i])
 ax.scatter(C[:, 0], C[:, 1], marker='*', s=200, c='#050505')
-
 plt.show()

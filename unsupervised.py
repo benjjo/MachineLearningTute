@@ -1,15 +1,10 @@
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 from matplotlib import style
-import numpy as np
-import pandas as pd
 style.use("ggplot")
 
-# x = [1, 5, 1.5, 8, 1, 9]
-# y = [2, 8, 1.8, 8, 0.6, 11]
-data = pd.read_csv('./xclara.csv')
-x = data['Temperature Difference'].values
-y = data['Pressure Difference'].values
+x = [1, 5, 1.5, 8, 1, 9]
+y = [2, 8, 1.8, 8, 0.6, 11]
 
 plt.scatter(x, y)
 plt.show()
@@ -19,7 +14,7 @@ plt.show()
 X = list(zip(x, y))
 
 # We initialise K-means algorithm with the required parameter and use .fit() to fit the data
-kmeans = KMeans(n_clusters=3)
+kmeans = KMeans(n_clusters=2)
 kmeans.fit(X)
 
 # Getting values of the centroids and labels based on the fitment
